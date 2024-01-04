@@ -119,7 +119,7 @@ void display(NODE first) {
 
 int main() {
     NODE first = NULL;
-    int choice;
+    int ch;
     STUDENT item;
 
     for (;;) {
@@ -127,7 +127,7 @@ int main() {
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        switch (choice) {
+        switch (ch) {
             case 1:
                 printf("USN: ");
                 scanf("%d", &item.usn);
