@@ -29,7 +29,7 @@ int main() {
         exit(EXIT_SUCCESS);
     }
 
-    // Reader Process
+    //reader Process
     else {
         int fd = open(FIFO_FILE, O_RDONLY);
         if (fd == -1) {
