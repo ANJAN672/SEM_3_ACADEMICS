@@ -27,13 +27,13 @@ int main() {
 
         // Check if the input is a valid integer
         if (scanf("%d", &choice) != 1) {
-            // Clear the input buffer in case of non-integer input
-            while (getchar() != '\n');
-            
             printf("Invalid input. Please enter a valid integer.\n");
+            // Clear the input buffer
+            while (getchar() != '\n');
             continue;
         }
-	 switch (choice) {
+
+        switch (choice) {
             case 1:
                 push();
                 break;
@@ -61,69 +61,3 @@ int main() {
 
     return 0;
 }
-
-void push() {
-    // Inserting element into the stack
-    if (top == (max_size - 1)) {
-        printf("\nStack Overflow:");
-    } else {
-        printf("Enter the element to be inserted:\t");
-        scanf("%d", &item);
-        top = top + 1;
-        stack[top] = item;
-    }
-    temp = top;
-}
-
-void pop() {
-    // Deleting an element from the stack
-    if (top == -1) {
-        printf("Stack Underflow:");
-        flag = 0;
-    } else {
-        item = stack[top];
-        top = top - 1;
-    }
-}
-
-void pali() {
-    i = 0;
-
-    if (top == -1) {
-        printf("Push some elements into the stack first\n");
-    } else {
-        while (top != -1) {
-            rev[top] = stack[top];
-            pop();
-        }
-
-        top = temp;
-
-        for (i = 0; i <= temp; i++) {
-            if (stack[top--] == rev[i]) {
-                if (i == temp) {
-                    printf("Palindrome\n");
-                    return;
-                }
-            }
-        }
-
-        printf("Not Palindrome\n");
-    }
-}
-
-void display() {
-    int i;
-    top = temp;
-
-    if (top == -1) {
-        printf("\nStack is Empty:");
-    } else {
-        printf("\nThe stack elements are:\n");
-
-        for (i = top; i >= 0; i--) {
-            printf("%d\n", stack[i]);
-        }
-    }
-}
-
