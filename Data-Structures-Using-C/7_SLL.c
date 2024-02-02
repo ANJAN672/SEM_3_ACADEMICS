@@ -125,7 +125,7 @@ int main() {
     for (;;) {
         printf("1. Insert Front\n2. Insert Rear\n3. Delete Front\n4. Delete Rear\n5. Display\n6. Exit\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        scanf("%d", &ch);
 
         switch (ch) {
             case 1:

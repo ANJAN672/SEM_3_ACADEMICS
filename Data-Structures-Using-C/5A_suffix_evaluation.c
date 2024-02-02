@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <math.h>
 
 #define MAX 20
@@ -37,7 +36,6 @@ int main() {
     }
     
     printf("%f", s.str[s.top]);
-    getch();
 }
 
 int isoperand(char x) {
@@ -56,7 +54,6 @@ void push(float x) {
 float pop() {
     if (s.top == -1) {
         printf("Stack is empty\nSTACK UNDERFLOW\n");
-        getch();
     } else {
         s.top--;
         return s.str[s.top + 1];
