@@ -51,7 +51,7 @@ void main() /* Main Program */
         {
             push(ch);
         }
-        else if (isalnum(ch))
+        else if (isalpha(ch))
         {
             pofx[k++] = ch;
         }
@@ -82,4 +82,3 @@ void main() /* Main Program */
 
     printf("\n\nGiven Infix Expn: %s Postfix Expn: %s\n", infx, pofx);
 }
-
