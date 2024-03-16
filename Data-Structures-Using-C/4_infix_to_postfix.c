@@ -1,84 +1,68 @@
-#include <ctype.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #define SIZE 50 /* Size of Stack */
+
 char s[SIZE];
 int top = -1; /* Global declarations */
 
-void push(char elem) /* Function for PUSH operation */
-{
+void push(char elem) {
     s[++top] = elem;
 }
 
-char pop() /* Function for POP operation */
-{
+char pop() {
     return (s[top--]);
 }
 
-int pr(char elem) /* Function for precedence */
-{
-    switch (elem)
-    {
-    case '#':
-        return 0;
-    case '(':
-        return 1;
-    case '+':
-    case '-':
-        return 2;
-    case '*':
-    case '/':
-    case '%':
-        return 3;
-    case '^':
-        return 4;
+int pr(char elem) {
+    switch (elem) {
+        case '#':
+            return 0;
+        case '(':
+            return 1;
+        case '+':
+        case '-':
+            return 2;
+        case '*':
+        case '/':
+        case '%':
+            return 3;
+        case '^':
+            return 4;
     }
 }
 
-void main() /* Main Program */
-{
-    char infx[50], pofx[50], ch, elem;
-    int i = 0, k = 0;
+void main(){
+    char infx[50],pofx[50],ch;
+    int i=0,k=0;
 
-    printf("\n\nRead the Infix Expression ? ");
-    scanf("%s", infx);
+    printf("Enter infix exp:");
+    scanf("%s",infx);
+    push('#');
 
-    push('#'); /* Push a '#' onto the stack to indicate the bottom of the stack */
-
-    while ((ch = infx[i++]) != '\0')
-    {
-        if (ch == '(')
-        {
+    while((ch=infx[i++])!='\0'){
+        if(ch=='('){
             push(ch);
         }
-        else if (isalpha(ch))
-        {
-            pofx[k++] = ch;
+        else if(isalpha(ch)){
+            pofx[k++]=ch;
         }
-        else if (ch == ')')
-        {
-            while (s[top] != '(')
-            {
-                pofx[k++] = pop();
+        else if(ch==')'){
+            while(s[top]!='('){
+                pofx[k++]=pop();
             }
-            elem = pop(); /* Remove '(' */
+            pop();
         }
-        else /* Operator */
-        {
-            while (pr(s[top]) >= pr(ch))
-            {
-                pofx[k++] = pop();
+        else{
+            while(pr(s[top])>=pr(ch)){
+                pofx[k++]=pop();
             }
             push(ch);
         }
     }
-
-    while (s[top] != '#') /* Pop from stack till empty */
-    {
-        pofx[k++] = pop();
+    while(s[top]!='#'){
+        pofx[k++]=pop();
     }
-
-    pofx[k] = '\0'; /* Make pofx a valid string */
-
-    printf("\n\nGiven Infix Expn: %s Postfix Expn: %s\n", infx, pofx);
+    pofx[k]='\0';
+    printf("Postfix exp:%s",pofx);
 }
