@@ -8,7 +8,7 @@ struct Enode {
     char dept[5];
     char designation[10];
     int salary;
-    long long int phno;
+    long long int phno; 
     struct Enode *left;
     struct Enode *right;
 } *head = NULL, *tail, *temp1;
@@ -84,10 +84,10 @@ void create(char s[15], char n[20], char dpt[5], char des[10], int sal, long lon
         strcpy(temp1->designation, des);
         temp1->salary = sal;
         temp1->phno = p;
-        tail->right = temp1;
-        temp1->right = NULL;
         temp1->left = tail;
+        tail->right = temp1;
         tail = temp1;
+        temp1->right = NULL;
     }
 }
 
@@ -112,7 +112,8 @@ void ins_beg(char s[15], char n[20], char dpt[5], char des[10], int sal, long lo
     temp1->salary = sal;
     temp1->phno = p;
     temp1->right = head;
-    head->left = temp1;
+    if (head != NULL)
+        head->left = temp1;
     head = temp1;
     temp1->left = NULL;
 }
@@ -125,9 +126,9 @@ void ins_end(char s[15], char n[20], char dpt[5], char des[10], int sal, long lo
     strcpy(temp1->designation, des);
     temp1->salary = sal;
     temp1->phno = p;
-    tail->right = temp1;
-    temp1->left = tail;
     temp1->right = NULL;
+    temp1->left = tail;
+    tail->right = temp1;
     tail = temp1;
 }
 
@@ -135,12 +136,14 @@ void del_beg() {
     temp1 = head->right;
     free(head);
     head = temp1;
-    head->left = NULL;
+    if (head != NULL)
+        head->left = NULL;
 }
 
 void del_end() {
     temp1 = tail->left;
     free(tail);
     tail = temp1;
-    tail->right = NULL;
+    if (tail != NULL)
+        tail->right = NULL;
 }
